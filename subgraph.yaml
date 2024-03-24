@@ -1,0 +1,86 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: BlastLockingMultiRewards
+    network: blast-mainnet
+    source:
+      address: "0xf1ed28fa139f2df5cf3ed140aa9f803c79554519"
+      abi: BlastLockingMultiRewards
+      startBlock: 1160620
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - LogBlastGasClaimed
+        - LogBlastNativeClaimableEnabled
+        - LogBlastTokenClaimableEnabled
+        - LogBlastTokenClaimed
+        - LogFeeToChanged
+        - LogLockIndexChanged
+        - LogLocked
+        - LogRecovered
+        - LogRewardAdded
+        - LogRewardLockCreated
+        - LogRewardLocked
+        - LogRewardPaid
+        - LogRewardsDurationUpdated
+        - LogSetMinLockAmount
+        - LogStaked
+        - LogUnlocked
+        - LogWithdrawn
+        - OperatorChanged
+        - OwnershipTransferred
+        - Paused
+        - Unpaused
+      abis:
+        - name: BlastLockingMultiRewards
+          file: ./abis/BlastLockingMultiRewards.json
+      eventHandlers:
+        - event: LogBlastGasClaimed(indexed address,uint256)
+          handler: handleLogBlastGasClaimed
+        - event: LogBlastNativeClaimableEnabled(indexed address)
+          handler: handleLogBlastNativeClaimableEnabled
+        - event: LogBlastTokenClaimableEnabled(indexed address,indexed address)
+          handler: handleLogBlastTokenClaimableEnabled
+        - event: LogBlastTokenClaimed(indexed address,indexed address,uint256)
+          handler: handleLogBlastTokenClaimed
+        - event: LogFeeToChanged(indexed address)
+          handler: handleLogFeeToChanged
+        - event: LogLockIndexChanged(indexed address,uint256,uint256)
+          handler: handleLogLockIndexChanged
+        - event: LogLocked(indexed address,uint256,uint256,uint256)
+          handler: handleLogLocked
+        - event: LogRecovered(address,uint256)
+          handler: handleLogRecovered
+        - event: LogRewardAdded(uint256)
+          handler: handleLogRewardAdded
+        - event: LogRewardLockCreated(indexed address,uint256)
+          handler: handleLogRewardLockCreated
+        - event: LogRewardLocked(indexed address,indexed address,uint256)
+          handler: handleLogRewardLocked
+        - event: LogRewardPaid(indexed address,indexed address,uint256)
+          handler: handleLogRewardPaid
+        - event: LogRewardsDurationUpdated(address,uint256)
+          handler: handleLogRewardsDurationUpdated
+        - event: LogSetMinLockAmount(uint256,uint256)
+          handler: handleLogSetMinLockAmount
+        - event: LogStaked(indexed address,uint256)
+          handler: handleLogStaked
+        - event: LogUnlocked(indexed address,uint256,uint256)
+          handler: handleLogUnlocked
+        - event: LogWithdrawn(indexed address,uint256)
+          handler: handleLogWithdrawn
+        - event: OperatorChanged(indexed address,bool)
+          handler: handleOperatorChanged
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Paused(address)
+          handler: handlePaused
+        - event: Unpaused(address)
+          handler: handleUnpaused
+      file: ./src/mappings.ts

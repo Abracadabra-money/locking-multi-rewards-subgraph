@@ -1,0 +1,231 @@
+type LockingMultiRewards @entity {
+  id: Bytes! # address
+  unlockedAmount: BigInt! 
+  lockedAmount: BigInt!
+}
+
+type User @entity {
+  id: Bytes! # address
+  unlockedAmount: BigInt! 
+  lockedAmount: BigInt!
+}
+
+### Events ###
+interface Event {
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogBlastGasClaimed implements Event @entity(immutable: true) {
+  id: Bytes!
+  recipient: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogBlastNativeClaimableEnabled implements Event @entity(immutable: true) {
+  id: Bytes!
+  contractAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogBlastTokenClaimableEnabled implements Event @entity(immutable: true) {
+  id: Bytes!
+  contractAddress: Bytes! # address
+  token: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogBlastTokenClaimed implements Event @entity(immutable: true) {
+  id: Bytes!
+  recipient: Bytes! # address
+  token: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogFeeToChanged implements Event @entity(immutable: true) {
+  id: Bytes!
+  feeTo: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogLockIndexChanged implements Event @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  fromIndex: BigInt! # uint256
+  toIndex: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogLocked implements Event @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  amount: BigInt! # uint256
+  unlockTime: BigInt! # uint256
+  lockCount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogRecovered implements Event @entity(immutable: true) {
+  id: Bytes!
+  token: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogRewardAdded implements Event @entity(immutable: true) {
+  id: Bytes!
+  reward: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogRewardLockCreated implements Event @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  unlockTime: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogRewardLocked implements Event @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  rewardsToken: Bytes! # address
+  reward: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogRewardPaid implements Event @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  rewardsToken: Bytes! # address
+  reward: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogRewardsDurationUpdated implements Event @entity(immutable: true) {
+  id: Bytes!
+  token: Bytes! # address
+  newDuration: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogSetMinLockAmount implements Event @entity(immutable: true) {
+  id: Bytes!
+  previous: BigInt! # uint256
+  current: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogStaked implements Event @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogUnlocked implements Event @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  amount: BigInt! # uint256
+  index: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type LogWithdrawn implements Event @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type OperatorChanged implements Event @entity(immutable: true) {
+  id: Bytes!
+  operator: Bytes! # address
+  status: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type OwnershipTransferred implements Event @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type Paused implements Event @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}
+
+type Unpaused implements Event @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+  logIndex: BigInt!
+}

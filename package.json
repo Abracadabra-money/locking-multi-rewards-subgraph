@@ -1,0 +1,25 @@
+{
+  "name": "locking-multi-rewards",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ locking-multi-rewards",
+    "create-local": "graph create --node http://localhost:8020/ locking-multi-rewards",
+    "remove-local": "graph remove --node http://localhost:8020/ locking-multi-rewards",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 locking-multi-rewards",
+    "test": "graph test",
+    "format": "biome format .",
+    "format:write": "biome format . --write",
+    "lint": "biome lint .",
+    "lint:apply": "biome lint . --apply"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-ts": "0.34.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.6.2",
+    "@graphprotocol/graph-cli": "0.69.0",
+    "matchstick-as": "0.6.0"
+  }
+}
